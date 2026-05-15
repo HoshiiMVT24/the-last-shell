@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - El Último Caparazón</title>
+    <link rel="stylesheet" href="paginas.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">IDM | UNACAR</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="narrativa.html">Narrativa</a></li>
+            <li><a href="galeria.html" class="active">Galería</a></li>
+        </ul>
+    </nav>
+
+    <header class="header-simple">
+        <h1 class="section-title">GALERÍA DE <span>PRODUCCIÓN</span></h1>
+    </header>
+
+    <main class="container">
+
+        <section class="gallery-section">
+            <h2 class="section-subtitle">CONCEPT <span>ART</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/concept1.png" alt="Mapa de la isla">
+                    <div class="overlay"><span>MAPA DE ENTORNO</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/concept2.png" alt="cantera concepto 1">
+                    <div class="overlay"><span>CANTERA V1</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/concept3.png" alt="Arte del Oasis">
+                    <div class="overlay"><span>OASIS ESMERALDA</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/concept4.png" alt="cantera">
+                    <div class="overlay"><span>ZONA INDUSTRIAL</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-subtitle">STORY<span>BOARDS</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/story_1.png" alt="Storyboard Escena 1">
+                    <div class="overlay"><span>ESCENA 1</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/story_2.png" alt="Storyboard Escena 2">
+                    <div class="overlay"><span>ESCENA 2</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/story_3.png" alt="Storyboard Escena 3">
+                    <div class="overlay"><span>ESCENA 3</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/story_4.png" alt="Storyboard Escena 4">
+                    <div class="overlay"><span>ESCENA 4</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/story_5.png" alt="Storyboard Escena 5">
+                    <div class="overlay"><span>ESCENA 5</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="section-subtitle">MODEL <span>SHEETS</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/ren_sheet.png" alt="Personaje: Ren">
+                    <div class="overlay"><span>PERSONAJE: REN</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kai_sheet.png" alt="Personaje: Kai">
+                    <div class="overlay"><span>PERSONAJE: KAI</span></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Vista Previa">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-info">
+            <p><strong>Autores:</strong> Carlos Abraham Cruz Vázquez & Evelin Jocelyn de la Cruz Arcos</p>
+            <p><strong>Asesor:</strong> César Octavio Guerra Guerrero</p>
+            <p>Universidad Autónoma del Carmen | Mayo 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('lightbox-modal');
+        const modalImg = document.getElementById('lightbox-img');
+        const captionText = document.getElementById('lightbox-caption');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        // Seleccionamos el contenedor padre (gallery-item) para que el overlay no bloquee el click
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                modal.classList.add('active');
+                modalImg.src = img.src;
+                captionText.innerHTML = img.alt;
+            });
+        });
+
+        function cerrarModal() {
+            modal.classList.add('closing');
+            setTimeout(() => {
+                modal.classList.remove('active');
+                modal.classList.remove('closing');
+            }, 500); 
+        }
+
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita conflictos de eventos
+            cerrarModal();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target !== modalImg && e.target !== captionText) {
+                cerrarModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && modal.classList.contains('active')) {
+                cerrarModal();
+            }
+        });
+    </script>
+</body>
+</html>

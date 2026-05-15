@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Caparazón - Sitio Oficial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">IDM | UNACAR</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="narrativa.html">Narrativa</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">EL ÚLTIMO <br><span>CAPARAZÓN</span></h1>
+            <p class="tagline">"El silencio es la única armadura"</p>
+
+            <div class="action-buttons">
+                <a href="galeria.html" class="nav-card">
+                    <div class="card-bg-placeholder img-arte"></div>
+                    <span class="card-text">VER ARTE CONCEPTUAL</span>
+                </a>
+
+                <a href="#video-section" class="nav-card btn-corto">
+                    <div class="card-bg-placeholder img-corto"></div>
+                    <span class="card-text">VER CORTOMETRAJE</span>
+                </a>
+
+                <a href="narrativa.html" class="nav-card">
+                    <div class="card-bg-placeholder img-historia"></div>
+                    <span class="card-text">INDAGA EN LA HISTORIA</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="video-section" class="video-display">
+        <h2 class="section-title">EL CORTOMETRAJE</h2>
+        <div class="video-wrapper">
+             <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/HUrFCyw5le4?si=IQJvIRypuztbGBQL" 
+                title="Reproductor de video de El Último Caparazón" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <section id="personajes" class="character-section">
+        <h2 class="section-title">CONOCE A LOS PERSONAJES</h2>
+        
+        <div class="slider-wrapper">
+            <button class="nav-arrow prev" onclick="changeChar(-1)">&#10094;</button>
+
+            <div class="slider-container">
+                <div class="character-card active" id="kai-card">
+                    <div class="char-img-container">
+                        <img src="images/kai_render.png" alt="Kai" class="char-img">
+                    </div>
+                    <div class="char-info">
+                        <span class="char-label">Sobreviviente</span>
+                        <h3>KAI</h3>
+                        <p>Kai es una tortuga terrestre de 12 años con mimetismo místico. En un ecosistema destruido, sus ojos cian brillan como la última esperanza. Debe aprender a dejar de esconderse para confiar en Ren.</p>
+                    </div>
+                </div>
+
+                <div class="character-card" id="ren-card">
+                    <div class="char-img-container">
+                        <img src="images/ren_render.png" alt="Ren" class="char-img">
+                    </div>
+                    <div class="char-info">
+                        <span class="char-label">Guardián</span>
+                        <h3>REN</h3>
+                        <p>Joven de 12 años que trabaja como aprendiz de mantenimiento en la cantera. Su curiosidad lo lleva a convertirse en el guardián de Kai, enfrentando un conflicto interno por protegerla de la maquinaria.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="nav-arrow next" onclick="changeChar(1)">&#10095;</button>
+        </div>
+
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="authors">
+            <p>AUTORES: <strong>Carlos Abraham Cruz Vázquez & Evelin Jocelyn de la Cruz Arcos</strong></p>
+            <p>ASESOR: <strong>César Octavio Guerra Guerrero</strong></p>
+        </div>
+        <div class="footer-logos">
+            <div class="logo-box">star-studio</div>
+            <div class="logo-box">IDM</div>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("character-card");
+        const dots = document.getElementsByClassName("dot");
+
+        function showSlides(n) {
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                if(dots[i]) dots[i].classList.remove("active");
+            }
+            slides[slideIndex].classList.add("active");
+            if(dots[slideIndex]) dots[slideIndex].classList.add("active");
+        }
+
+        function changeChar(n) { showSlides(slideIndex += n); }
+        function currentSlide(n) { showSlides(slideIndex = n); }
+        showSlides(slideIndex);
+    </script>
+</body>
+</html>
